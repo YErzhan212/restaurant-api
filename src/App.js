@@ -12,6 +12,7 @@ import * as types from './actions/types';
 import Dashboard from './containers/dashboard';
 import Main from './containers/main';
 import Profile from './components/profile';
+import Restaurants from './components/restaurants';
 
 const store = configureStore()
 
@@ -38,6 +39,7 @@ function App() {
             <Route exact path={`/signup`} component={Signup} />
             <Route exact path={`/signin`} component={Signin} />
             <Route exact path={`/profile`} component={Profile}/>
+            <Route exact path={`/restaurants`} component={Restaurants}/>
             <Route path={`/dashboard`} component={Dashboard} />
           </Switch>
         </Router>
