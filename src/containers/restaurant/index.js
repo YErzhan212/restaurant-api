@@ -33,7 +33,6 @@ function Restaurant(props) {
         rate: ""
     })
     const [editForm, setEditForm] = useState({
-        id: "",
         name: "",
         phone: "",
         location: "",
@@ -48,9 +47,10 @@ function Restaurant(props) {
         setEditModalVisible(true)
     }
     
-    const handlerEdit = () => {
+    const handlerEdit = (value) => {
         editForm.name && editForm.id && props.restaurantActions.editRestaurant(editForm)
         setEditModalVisible(false)
+        console.log(value)
     }
 
     const onEditChange = e => {
@@ -127,6 +127,7 @@ function Restaurant(props) {
     const handleChange = (value) => {
         setKitchens(value)
     }
+
     const onChangePage = e => {
         setSearch(prev => ({
             ...prev,
@@ -174,6 +175,7 @@ function Restaurant(props) {
                     <Meta title={`Адресс: ${item.location}`}/>
                     <Meta title={`Средний чек: ${item.averageBill}`}/>
                     <Meta title={`Тел. номер: ${item.phone}`}/>
+                    <Meta title={`Кухня: ${item.kitchens}`}/>
                     <Button onClick={showEditVisible} type="primary" style={{marginTop: 10}}>Редактировать</Button>
                     <Button onClick={() => deleteItem(item)} style={{marginTop: 10}}>Delete</Button>
                 </Card>
@@ -206,7 +208,6 @@ return (
             >
                 <Form.Item
                     label="Название ресторана"
-                    name="name"
                     rules={[
                         {
                             required: true,
@@ -324,7 +325,7 @@ return (
                                         {/* Модалка для Редоктирования */}
                                         {/* Модалка для Редоктирования */}
         <Modal
-            title="Edit Restaurant"
+            title="Редактирование"
             visible={editModalVisible}
             onOk={handlerEdit}
             onCancel={() => setEditModalVisible(false)}
@@ -339,7 +340,6 @@ return (
             >
                 <Form.Item
                     label="Название ресторана"
-                    name="name"
                     rules={[
                         {
                             required: true,
@@ -347,11 +347,10 @@ return (
                         },
                     ]}
                 >
-                    <Input name="name"  onChange={onEditChange} />
+                    <Input value={editForm.name} onChange={onEditChange} />
                 </Form.Item>
                 <Form.Item
                     label="Адрес"
-                    name="location"               
                     rules={[
                         {
                             required: true,
@@ -359,11 +358,10 @@ return (
                         },
                     ]}
                 >
-                    <Input name="location"  onChange={onEditChange}/>
+                    <Input  onChange={onEditChange}/>
                 </Form.Item>
                 <Form.Item
                     label="Телефоный номер"
-                    name="phone"
                     rules={[
                         {
                             required: true,
@@ -371,11 +369,10 @@ return (
                         },
                     ]}
                 >
-                    <Input  name="phone" onChange={onEditChange}/>
+                    <Input onChange={onEditChange}/>
                 </Form.Item>
                 <Form.Item
                     label="Количество мест"
-                    name="amountOfPlace"
                     rules={[
                         {
                             required: true,
@@ -383,11 +380,10 @@ return (
                         },
                     ]}
                 >
-                    <Input name="amountOfPlace" onChange={onEditChange}/>
+                    <Input onChange={onEditChange}/>
                 </Form.Item>
                 <Form.Item
                     label="Средний чек"
-                    name='averageBill'
                     rules={[
                         {
                             required: true,
@@ -395,11 +391,10 @@ return (
                         },
                     ]}
                 >
-                    <Input  name="averageBill" onChange={onEditChange}/>
+                    <Input onChange={onEditChange}/>
                 </Form.Item>
                 <Form.Item
                     label="Кухня"
-                    name="kitchens"
                     rules={[
                         {
                             required: true,
@@ -419,7 +414,6 @@ return (
                 </Form.Item>
                 <Form.Item
                     label="Рейтинг"
-                    name='rate'
                     rules={[
                         {
                             required: true,
@@ -427,11 +421,10 @@ return (
                         },
                     ]}
                 >
-                    <Input name="rate" onChange={onEditChange}/>
+                    <Input onChange={onEditChange}/>
                 </Form.Item>
                 <Form.Item
                     label="Фото"
-                    name="image"
                     rules={[
                         {
                             required: true,
@@ -440,14 +433,13 @@ return (
                     ]}
                 >
                         <Upload
-                            name="avatar"
                             listType="picture-card"
                             className="avatar-uploader"
                             showUploadList={false}
                             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                             beforeUpload={beforeUpload}
                             onChange={handleUploadChange}
-                            >
+                        >
                             {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                         </Upload>
                 </Form.Item>

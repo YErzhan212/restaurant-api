@@ -11,7 +11,7 @@ function* signUp(action) {
    try{
       const authResponse = yield axios.post(`http://localhost:5000/api/users/register`, data).then(res => res.data)
       yield put({ type: types.SIGN_UP_SUCCESS, payload: authResponse });
-      history.push('/dashboard');
+      history.push('/');
    } catch(error) {
       yield put ({ type: types.SIGN_UP_FAILED, error })
    }

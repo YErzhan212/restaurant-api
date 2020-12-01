@@ -28,11 +28,11 @@
 }
 
 .navbar {
-   font-size: 18px;
+   font-size: 13px;
 }
 
 .link {
    color: #fff;
    margin-left: 20px;
+   text-transform: uppercase;
 }
-

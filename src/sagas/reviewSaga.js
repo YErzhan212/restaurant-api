@@ -28,7 +28,6 @@ function* addReview(action) {
 function* deleteReview(action) {
 
    const {data} = action;
-   console.log(data)
 
    try {
       const reviewResponse = yield axios.delete(`http://localhost:5000/api/review/${data}`).then(res => res.data)

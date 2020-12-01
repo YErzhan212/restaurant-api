@@ -46,38 +46,36 @@ function Signup(props) {
             <div className="bg-opacity"></div>             
             <Form className="form-signin"
                {...layout}
-               name="basic"
+               name="Authorization"
                initialValues={{
-               remember: true,
+                  remember: true,
                }}
                onFinish={onFinish}
                onFinishFailed={onFinishFailed}
             >
             <Form.Item style={{ margin: `30px` }}
-            name="name"
-            rules={[
-               {
-                  required: true,
-                  message: 'Please input your username!',
-               },
-            ]}
+               name="username"
+               rules={[
+                  {
+                     required: true,
+                     message: 'Please input your username!',
+                  },
+               ]}
             >
             <Input placeholder="Username"/>
             </Form.Item>
             <Form.Item style={{ margin: `30px` }}
-            name="email"
-            rules={[
-               {
-                  required: true,
-                  message: 'Please input your username!',
-               },
-            ]}
+               name="email"
+               rules={[
+                  {
+                     required: true,
+                     message: 'Please input your email!',
+                  },
+               ]}
             >
             <Input placeholder="Email"/>
             </Form.Item>
-            
-
-               <Form.Item style={{ margin: `30px` }}
+            <Form.Item style={{ margin: `30px` }}
                name="password"
                rules={[
                   {
@@ -85,7 +83,7 @@ function Signup(props) {
                      message: 'Please input your password!',
                   },
                ]}
-               >
+            >
             <Input.Password placeholder="Password"/>
             </Form.Item>
 

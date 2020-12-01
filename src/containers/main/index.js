@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './main.css'
-import { Carousel, Container, Card, CardDeck } from 'react-bootstrap';
+import { Carousel, Card, CardDeck } from 'react-bootstrap';
 import Footer from '../../components/footer';
 
 function Main() {

@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Kitchen from '../kitchen/index';
 import Restaurant from '../restaurant/index';
-import Review from '../review/index'
+import Review from '../review/index';
 import {
   TrademarkOutlined,
   PlusOutlined,
@@ -26,7 +26,6 @@ function Dashboard(props) {
 
     return (
       <div>
-        {/* <Navbar /> */}
         <Layout>
           <Sider trigger={null} collapsible >
             <div className="" />
@@ -42,6 +41,9 @@ function Dashboard(props) {
               </Menu.Item>
               <Button onClick={() => logout()} type="primary" style={{margin: `10px 0 0 25px`}}>
                 LOGOUT
+              </Button>
+              <Button href="/" type="primary" style={{margin: `10px 0 0 25px`}}>
+                GO TO MAIN
               </Button>
             </Menu>
           </Sider>
