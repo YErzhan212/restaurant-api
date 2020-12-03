@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import * as restaurantActions from "../../actions/restaurantActions";
 import * as reviewActions from '../../actions/reviewActions';
+import * as orderActions from '../../actions/orderActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import './styleRestaurant.css'
 import { Container, Button } from 'react-bootstrap';
 import Navbar from '../navbar';
 import Footer from '../footer';
+import {  Input, Modal } from 'antd';
 
 function RestaurantList(props) {
 
@@ -14,20 +16,17 @@ function RestaurantList(props) {
    const [addReviews, setAddReviews] = useState({
       text: '',
    })
-
-   // useEffect(() => {
-   //    async function fetchData() {
-   //       await props.restaurantActions.getRestaurant()
-   //    }
-   //    fetchData()
-   // }, [props.restaurantActions])
-
+  
    useEffect(() => {
       async function fetchReview() {
          await props.reviewActions.getReview()
       }
       fetchReview()
    }, [props.reviewActions])
+
+   useEffect(() => {
+      setRestaurantList(props.restaurant.restaurants)
+   }, [props.restaurantActions])
 
    const onChangeHandler = e => {
       setAddReviews({ text: e.target.value })
@@ -64,6 +63,7 @@ function RestaurantList(props) {
          <div key={i} className="reviews">
             <h4>{item.userId}</h4>
             <p>{item.text}</p>
+            <p>{item.restaurantId}</p>
             <span onClick={() => deleteReview(item)}>Удалить Отзыв</span>
          </div>
       )
@@ -90,7 +90,7 @@ function RestaurantList(props) {
                   <div className="review__blog">
                      {review}
                      <div className="add__review">
-                        <h5>Сообщение:</h5>
+                        <h5 style={{ color: `#fff` }}>Сообщение:</h5>
                         <textarea
                            name="comment"
                            placeholder="Введите сообщение..."
@@ -119,7 +119,7 @@ function RestaurantList(props) {
 const mapStateToProps = state => ({
    error: state.restaurant.error,
    restaurant: state.restaurant.restaurants,
-   reviews: state.review.reviews
+   reviews: state.review.reviews,
 })
 
 const mapDispatchToProps = dispatch => ({

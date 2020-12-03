@@ -4,16 +4,15 @@ import * as authActions from '../../actions/authActions';
 import * as restaurantActions from '../../actions/restaurantActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Input, Modal } from 'antd';
+import { Card, Row, Col, Button, Input, Form, Select, Modal, Upload, message, Pagination } from 'antd';
 
 function Order(props) {
 
+   const { Meta } = Card;
+
    const [modal, setModal] = useState(false)
    const [form, setForm] = useState({
-      userId: props.user.id,
-      restaurantId: ``,
-      orderdate: ` `,
-      guest: ` `
+      guest: ' '
    })
 
    useEffect(() => {
@@ -21,7 +20,7 @@ function Order(props) {
          await props.orderActions.getOrder()
       }
       fetchData()
-   }, [props.orderActions])
+   }, [props.orderActions, form])
 
    const showModal = () => {
       setModal(true)
@@ -45,12 +44,10 @@ function Order(props) {
 
    const orders = props.order?.orders?.map((item, i) => {
       return (
-         <div key={i}>
-            <p>{item.userId}</p>
-            <p>{item.restaurantId}</p>
-            <p>{item.orderdate}</p>
-            <p>{item.guest}</p>
-         </div>
+         <Col span={6}>
+            <Meta id={item.id}/>
+               <Meta title={item.userId}/>
+            </Col>
       )
    })
 
@@ -61,11 +58,8 @@ function Order(props) {
             visible={modal}
             onOk={handleOk}
             onCancel={handleCancel}
-         >  
-            <label>Введите дату:</label>
-            <Input name="text" onChange={onChangeHandler}/>
-            <label>Количество Гостей:</label>
-            <Input name="text" onChange={onChangeHandler}/>
+         >
+         <Input name="text" onChange={onChangeHandler}/>
          </Modal>
             {orders}
          <button onClick={showModal}>add</button>
@@ -76,6 +70,7 @@ function Order(props) {
 const mapStateToProps = state => ({
    error: state.restaurant.error,
    error: state.order.error,
+   restaurant: state.restaurant.restaurants,
    order: state.order.orders,
    user: state.auth.user
 })

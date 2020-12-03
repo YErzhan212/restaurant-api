@@ -9,8 +9,7 @@ function Kitchen(props) {
 
    const [visible, setVisible] = useState(false);
    const [editVisible, setEditVisible] = useState(false);
-
-   const [name, setName] = useState({
+   const [form, setForm] = useState({
       name: " "
    })
 
@@ -37,14 +36,14 @@ function Kitchen(props) {
       }
    })
 
-   const handleEdit = () => {
-      editForm.name && editForm.id && props.kitchensActions.editKitchens(editForm)
-      setEditVisible(false)
-   }
-
    const opneEditModal = item => {
       setEditVisible(true)
       setEditForm({ name: item.name, id: item.id })
+   }
+
+   const handleEdit = () => {
+      editForm.name && editForm.id && props.kitchensActions.editKitchens(editForm)
+      setEditVisible(false)
    }
 
    const onEditChange = e => {
@@ -60,11 +59,11 @@ function Kitchen(props) {
    }
 
    const onChangeHandler = e => {
-      setName({ name: e.target.value })
+      setForm({ name: e.target.value })
    }
 
    const add = () => {
-      props.kitchensActions.postKitchens(name)
+      form.name && form.name.length && props.kitchensActions.postKitchens({name: form.name})
       setVisible(false)
    }
 
@@ -72,7 +71,7 @@ function Kitchen(props) {
       {
          title: 'ID',
          dataIndex: 'id',
-         key: 'ID',
+         key: 'id',
          render: text => <p>{text}</p>,
       },
       {
@@ -115,7 +114,7 @@ function Kitchen(props) {
                      <label>Name:</label>
                      <Input 
                         style={{ margin: `20px 0 20px 0` }} 
-                        value={name.name} 
+                        value={form.name} 
                         onChange={onChangeHandler}
                      />
                         <Button type="default" onClick={() => setVisible(false)} className="btn">

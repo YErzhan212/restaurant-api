@@ -9,30 +9,18 @@ import './profile.css';
 
 function Profile(props) {
 
-   // const [users, setUsers] = useState({
-   //    name: item.name,
-   //    email: item.email
-   // })
-
-   useEffect(() => {
-      async function fetchAuth() {
-         await props.authActions.signUp()
-      }
-      fetchAuth()
-   }, [props.authActions])
-
    const logout = () => {
       props.authActions.logOut(props.history)
    }
 
-   // const user = props.auth?.isLoading?.map((item, i) => {
-   //    return (
-   //       <div key={i}>
-   //          <h3>{item.name}</h3>
-   //          <h3>{item.email}</h3>
-   //       </div>
-   //    )
-   // })
+   const user = props.auth?.user?.map((item, i) => {
+      return (
+         <div key={i}>
+            <h3>{item.name}</h3>
+            <h3>{item.email}</h3>
+         </div>
+      )
+   })
 
    return (
       <div style={{ backgroundColor: `#d1d1d1d1`, height: `900px`}}>
@@ -44,7 +32,7 @@ function Profile(props) {
                      <div className="inner__profile">
                         <h4>Вы вошли в личный кабинет</h4>
                      </div>
-                     {/* {user} */}
+                     {user}
                      {/* <div className="user__info">
                         Имя: Пользавателя
                      </div>
@@ -72,7 +60,7 @@ function Profile(props) {
 
 const mapStateToProps = state => ({
    error: state.auth.error,
-   isLoading: state.auth.isLoading
+   user: state.auth.user
 })
 
 const mapDispatchToProps = dispatch => ({

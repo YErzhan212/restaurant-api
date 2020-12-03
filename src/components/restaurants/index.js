@@ -20,7 +20,7 @@ function Restaurants(props) {
    })
    const [modalOrder, setOrder] = useState(false)
    const [formOrder, setFormOrder] = useState({
-      orderdate: ``,
+      orderdate: Date.now(),
       guest: ``,
    })
 
@@ -39,24 +39,24 @@ function Restaurants(props) {
       props.restaurantActions.getRestaurant({ query: search.query, page: e })
    }
 
-   // const showModal = () => {
-   //    setOrder(true)
-   // };
+   const showModal = () => {
+      setOrder(true)
+   };
   
-   // const handleOk = e => {
-   //    console.log(e);
-   //    setOrder(false);
-   //    props.orderActions.addOrder(formOrder);
-   // };
+   const handleOk = e => {
+      console.log(e);
+      setOrder(false);
+      props.orderActions.addOrder(formOrder);
+   };
   
-   // const handleCancel = e => {
-   //    console.log(e);
-   //    setOrder(false)
-   // };
+   const handleCancel = e => {
+      console.log(e);
+      setOrder(false)
+   };
 
-   // const onChangeHandler = e => {
-   //    setFormOrder({ text: e.target.value })
-   // }
+   const onChangeHandler = e => {
+      setFormOrder({ text: e.target.value })
+   }
 
    const searchHandler = (e) => {
       setSearchReq(e.target.value)
@@ -75,7 +75,7 @@ function Restaurants(props) {
                <p>{`Amount of Place: ${item.amountOfPlace}`}</p>
                <p>{`Phone: ${item.phone}`}</p>
                   <div className="btns">
-                     <button >Order</button>
+                     <button onClick={showModal}>Order</button>
                      <button>Favorite</button>
                   </div>
             </div>
@@ -86,7 +86,7 @@ function Restaurants(props) {
    return (
       <div className="restaurants-wrapper">
          <Navbar />
-            {/* <Modal
+            <Modal
                title="Забронировать"
                visible={modalOrder}
                onOk={handleOk}
@@ -96,7 +96,7 @@ function Restaurants(props) {
                <Input onChange={onChangeHandler}/>
                <label>Количество Гостей:</label>
                <Input onChange={onChangeHandler}/>
-            </Modal> */}
+            </Modal>
             <div className="content">
                <Container>
                   <Input
@@ -111,7 +111,7 @@ function Restaurants(props) {
                      onChange={onChangePage}
                      current={search.page}
                      pageSize={3} 
-                     total={Number(props.restaurant.total)}
+                     total={Number(props.restaurant?.restaurants?.total)}
                   />
                </Container>
             </div>

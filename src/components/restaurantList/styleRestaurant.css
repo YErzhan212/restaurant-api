@@ -10,11 +10,13 @@
 .review__wrapper {
    width: 100%;
    height: inherit;
+   background-color:  #0f0f0fd1;
 }
 
 .review__blog {
    width: 100%;
-   height: inherit;  
+   height: inherit;
+   padding-top: 20px;
 }
 
 .reviews {
@@ -23,13 +25,20 @@
    border-bottom: 1.7px solid #7a7a7a;
 }
 
+.reviews > h4 {
+   margin-top: 20px;
+   color: #fff;
+}
+
 .reviews > p {
-   font-size: 20px;
+   font-size: 18px;
+   color: #fff;
 }
 
 .reviews > span {
    float: right;
    font-size: 14px;
+   color: #fff;
 }
 
 .reviews > span:hover {
@@ -47,5 +56,5 @@
    resize: none;
    outline: none;
    background-color: inherit;
-   color: red;
+   color: #fff;
 }

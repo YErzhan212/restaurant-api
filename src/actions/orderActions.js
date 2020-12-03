@@ -5,5 +5,5 @@ export function getOrder() {
 }
 
 export function addOrder(data) {
-   return { tyep: types.ADD_ORDER, data }
+   return { type: types.ADD_ORDER, data }
 }

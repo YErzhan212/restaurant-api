@@ -8,7 +8,7 @@ export function postKitchens(data) {
    return { type: types.CREATE_KITCHENS, data }
 }
 
-export function editKitchen(data) {
+export function editKitchens(data) {
    return { type: types.EDIT_KITCHEN, data }
 }
 
