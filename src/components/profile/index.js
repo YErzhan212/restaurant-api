@@ -32,11 +32,10 @@ function Profile(props) {
                      <div className="inner__profile">
                         <h4>Вы вошли в личный кабинет</h4>
                      </div>
-                     {user}
-                     {/* <div className="user__info">
-                        Имя: Пользавателя
+                     <div className="user__info">
+                        {user}
                      </div>
-                     <div className="user__image">
+                     {/* <div className="user__image">
                         <div className="avatar"></div>
                         <Button type="dashed" style={{ marginLeft: `60px` }}>Загрузить фото</Button>
                      </div> */}
@@ -44,7 +43,7 @@ function Profile(props) {
                   <Col sm={2} className="col__settings">
                      <div className="settings">
                         <a href="/order" >брони</a>
-                        <a href="#" >избранные</a>
+                        <a href="/favorites" >избранные</a>
                         <a href="/dashboard" >панель управления</a>
                         <a href="#" >настройки</a>
                         <span onClick={() => logout()}>выйтий из системы</span>

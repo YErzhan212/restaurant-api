@@ -4,6 +4,7 @@ import { kitchenSaga } from './kitchenSaga';
 import { restaurantSaga } from './restaurantSaga';
 import { reviewSaga } from './reviewSaga';
 import { orderSaga } from './orderSaga';
+import { favoriteSaga } from './favoriteSaga';
 
 export default function* rootSaga() {
    yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
       kitchenSaga(),
       restaurantSaga(),
       reviewSaga(),
-      orderSaga()
+      orderSaga(),
+      favoriteSaga()
    ])
 }

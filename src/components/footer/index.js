@@ -14,10 +14,10 @@ function Footer() {
                      RESTAURANT
                   </NavLink>
                   <div className="social-icon">
-                     <a href="#" className="link-social-media"><FaInstagram /></a>
-                     <a href="#" className="link-social-media"><FaFacebook /></a>
-                     <a href="#" className="link-social-media"><FaTwitter /></a>
-                     <a href="https://github.com/YErzhan212" className="link-social-media"><FaGithub /></a>
+                     <a href="#" className="link-social-media instagram"><FaInstagram /></a>
+                     <a href="#" className="link-social-media facebook"><FaFacebook /></a>
+                     <a href="#" className="link-social-media twitter"><FaTwitter /></a>
+                     <a href="https://github.com/YErzhan212" className="link-social-media github" target="__blank"><FaGithub /></a>
                   </div>
                </div>
             </Container>

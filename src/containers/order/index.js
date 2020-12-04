@@ -4,7 +4,7 @@ import * as authActions from '../../actions/authActions';
 import * as restaurantActions from '../../actions/restaurantActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Card, Row, Col, Button, Input, Form, Select, Modal, Upload, message, Pagination } from 'antd';
+import { Card, Col, Input, Modal } from 'antd';
 
 function Order(props) {
 
@@ -12,7 +12,10 @@ function Order(props) {
 
    const [modal, setModal] = useState(false)
    const [form, setForm] = useState({
-      guest: ' '
+      userId: ` `,
+      restaurantId: ` `,
+      orderdate: ` `,
+      guest: ' ',
    })
 
    useEffect(() => {
@@ -37,17 +40,40 @@ function Order(props) {
       setModal(false)
    };
 
-   const onChangeHandler = e => {
-      setForm({ text: e.target.value })
+   const onChangeHandlerOrderDate = (value) => {
+      setForm (prev => ({
+         ...prev,
+         orderdate: value
+      }))
    }
 
+   const onChangeHandlerGuest = (value) => {
+      setForm (prev => ({
+         ...prev,
+         guest: value
+      }))
+   }
+
+   const onChangeHandlerUserId = (value) => {
+      setForm (prev => ({
+         ...prev,
+         userId: value
+      }))
+   }
+
+   const onChangeHandlerRestaurantId = (value) => {
+      setForm (prev => ({
+         ...prev,
+         restaurantId: value
+      }))
+   }
 
    const orders = props.order?.orders?.map((item, i) => {
       return (
          <Col span={6}>
             <Meta id={item.id}/>
-               <Meta title={item.userId}/>
-            </Col>
+            <Meta title={item.userId}/>
+         </Col>
       )
    })
 
@@ -59,7 +85,14 @@ function Order(props) {
             onOk={handleOk}
             onCancel={handleCancel}
          >
-         <Input name="text" onChange={onChangeHandler}/>
+         <label>guest</label>
+         <Input name="text" onChange={onChangeHandlerGuest}/>
+         <label>orderdate</label>
+         <Input name="text" onChange={onChangeHandlerOrderDate}/>
+         <label>userId</label>
+         <Input name="text" onChange={onChangeHandlerUserId}/>
+         <label>restaurantId</label>
+         <Input name="text" onChange={onChangeHandlerRestaurantId}/>
          </Modal>
             {orders}
          <button onClick={showModal}>add</button>
@@ -72,7 +105,7 @@ const mapStateToProps = state => ({
    error: state.order.error,
    restaurant: state.restaurant.restaurants,
    order: state.order.orders,
-   user: state.auth.user
+   user: state.auth.user.id
 })
 
 const mapDispatchToProps = dispatch => ({

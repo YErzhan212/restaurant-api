@@ -27,6 +27,10 @@
    color: #ffff;
 }
 
+.nav-ponel-logo:hover {
+   color: orange;
+}
+
 .navbar {
    font-size: 13px;
 }
@@ -35,4 +39,8 @@
    color: #fff;
    margin-left: 20px;
    text-transform: uppercase;
+}
+
+.link:hover {
+   color: orange;
 }

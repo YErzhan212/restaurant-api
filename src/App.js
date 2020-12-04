@@ -15,6 +15,7 @@ import Profile from './components/profile';
 import Restaurants from './components/restaurants';
 import RestaurantList from './components/restaurantList';
 import Order from './containers/order'
+import Favorites from './containers/favorites';
 
 const store = configureStore()
 
@@ -44,6 +45,7 @@ function App() {
             <Route exact path={`/restaurants`} component={Restaurants}/>
             <Route exact path={`/restaurants/:id`} component={RestaurantList}/>
             <Route exact path={`/order`} component={Order}/>
+            <Route exact path={`/favorites`} component={Favorites}/>
             <Route path={`/dashboard`} component={Dashboard} />
           </Switch>
         </Router>
