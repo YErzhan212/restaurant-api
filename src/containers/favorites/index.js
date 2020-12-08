@@ -6,6 +6,14 @@ import * as restaurantActions from '../../actions/restaurantActions';
 
 function Favorites(props) {
 
+   const [fromData] = useState([
+      {
+         restaurant: props.restaurant
+      }
+   ])
+
+   console.log(fromData)
+
    useEffect(() => {
       async function fetchData() {
          await props.favoriteActions.getFavorites()
@@ -13,17 +21,19 @@ function Favorites(props) {
       fetchData()
    }, [props.favoriteActions])
 
-   const favoriteItem = props.favorite?.favorites?.map((item, i) => {
-      return {
-         key: i,
-         id: item.id,
-         name: item.props.restaurant
-      }
+   const favoriteItem = props.favorite.map((item, i) => {
+      return (
+         <div key={i}>
+            <p>{item.id}</p>
+            <div>{fromData.restaurant}</div>
+         </div>
+      )
    })
 
    return (
-      <div>
+      <div style={{margin: `50px`}}>
          {favoriteItem}
+         <button>add</button>
       </div>
    )
 }

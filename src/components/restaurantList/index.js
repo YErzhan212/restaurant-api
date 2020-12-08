@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import * as restaurantActions from "../../actions/restaurantActions";
 import * as reviewActions from '../../actions/reviewActions';
 import * as orderActions from '../../actions/orderActions';
+import * as authActions from '../../actions/authActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import './styleRestaurant.css'
@@ -12,21 +13,21 @@ import {  Input, Modal } from 'antd';
 
 function RestaurantList(props) {
 
-   const [restaurantList, setRestaurantList] = useState({})
-   const [addReviews, setAddReviews] = useState({
-      text: '',
+   const [restaurantList] = useState({
+      image: props.restaurant
    })
-  
+
+   console.log(restaurantList)
+   const [addReviews, setAddReviews] = useState({
+      text: ' ',
+   })
+
    useEffect(() => {
       async function fetchReview() {
          await props.reviewActions.getReview()
       }
       fetchReview()
    }, [props.reviewActions])
-
-   useEffect(() => {
-      setRestaurantList(props.restaurant.restaurants)
-   }, [props.restaurantActions])
 
    const onChangeHandler = e => {
       setAddReviews({ text: e.target.value })
@@ -35,10 +36,6 @@ function RestaurantList(props) {
    const addReview = e => {
       console.log(e)
       props.reviewActions.addReview(addReviews)
-   }
-
-   const deleteReview = item => {
-      props.reviewActions.deleteReview(item.id)
    }
    
    // const restaurant = props.restaurant?.restaurants?.map((restaurantList, i) => {
@@ -64,7 +61,6 @@ function RestaurantList(props) {
             <h4>{item.userId}</h4>
             <p>{item.text}</p>
             <p>{item.restaurantId}</p>
-            <span onClick={() => deleteReview(item)}>Удалить Отзыв</span>
          </div>
       )
    })
@@ -88,6 +84,7 @@ function RestaurantList(props) {
             <div className="review__wrapper">
                <Container>
                   <div className="review__blog">
+                     <h3>отзывы наших клиентов</h3>
                      {review}
                      <div className="add__review">
                         <h5 style={{ color: `#fff` }}>Сообщение:</h5>
@@ -118,13 +115,15 @@ function RestaurantList(props) {
 
 const mapStateToProps = state => ({
    error: state.restaurant.error,
-   restaurant: state.restaurant.restaurants,
+   restaurant: state.restaurant.restaurants.image,
    reviews: state.review.reviews,
+   user: state.auth.user.name
 })
 
 const mapDispatchToProps = dispatch => ({
    restaurantActions: bindActionCreators(restaurantActions, dispatch),
    reviewActions: bindActionCreators(reviewActions, dispatch),
+   authActions: bindActionCreators(authActions, dispatch)
 })
 
 

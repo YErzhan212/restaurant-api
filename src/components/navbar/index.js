@@ -6,11 +6,7 @@ import { Container } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as authActions from '../../actions/authActions';
-import { SET_CURRENT_USER, SIGN_IN, SIGN_UP, SIGN_UP_SUCCESS } from '../../actions/types';
 
-// if(localStorage.length > 0) {
-//   document.getElementById("#auth__user").style.display = "block"
-// }
 
 function Navbar() {
 
@@ -25,6 +21,7 @@ function Navbar() {
             <Link to="/" className="link">Home</Link>
             <Link to="#" className="link">About Us</Link>
             <Link to="#" className="link">Contacts</Link> 
+            <Link to="#" className="link">services</Link> 
             <Link to="/profile" className="link" id="auth__user">Profile</Link> 
           </div>
         </div>
@@ -34,8 +31,8 @@ function Navbar() {
 }
 
 const mapStateToProps = state => ({
-   error: state.auth.error,
-   isLoading: state.auth.isLoading
+  error: state.auth.error,
+  isLoading: state.auth.isLoading
 })
 
 const mapDispatchToProps = dispatch => ({

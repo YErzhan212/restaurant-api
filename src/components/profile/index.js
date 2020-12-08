@@ -9,21 +9,18 @@ import './profile.css';
 
 function Profile(props) {
 
+   const [userData] = useState({
+      name: props.name
+   })
+
    const logout = () => {
       props.authActions.logOut(props.history)
    }
 
-   const user = props.auth?.user?.map((item, i) => {
-      return (
-         <div key={i}>
-            <h3>{item.name}</h3>
-            <h3>{item.email}</h3>
-         </div>
-      )
-   })
+   console.log(userData)
 
    return (
-      <div style={{ backgroundColor: `#d1d1d1d1`, height: `900px`}}>
+      <div style={{ backgroundColor: `#0f0f0fd1`, height: `900px`}}>
          <div className="profile-wrapper">
             <Navbar />
             <Container>
@@ -33,16 +30,16 @@ function Profile(props) {
                         <h4>Вы вошли в личный кабинет</h4>
                      </div>
                      <div className="user__info">
-                        {user}
+                        <span>здравствуйте,</span>
+                        <h2>{userData.name}!</h2>
+                        <p style={{ marginTop: `30px` }}>Здесь вы можете управлять настройками своего аккаунта.</p>
+                        <p>Бронировать столики</p> 
+                        <p><td>Следить за новинками</td>Ваших любимых ресторанов,<td>в разделе Избранные</td></p>
                      </div>
-                     {/* <div className="user__image">
-                        <div className="avatar"></div>
-                        <Button type="dashed" style={{ marginLeft: `60px` }}>Загрузить фото</Button>
-                     </div> */}
                   </Col>
                   <Col sm={2} className="col__settings">
                      <div className="settings">
-                        <a href="/order" >брони</a>
+                        <a href="/order" >забронировать</a>
                         <a href="/favorites" >избранные</a>
                         <a href="/dashboard" >панель управления</a>
                         <a href="#" >настройки</a>
@@ -59,7 +56,7 @@ function Profile(props) {
 
 const mapStateToProps = state => ({
    error: state.auth.error,
-   user: state.auth.user
+   name: state.auth.user.name,
 })
 
 const mapDispatchToProps = dispatch => ({

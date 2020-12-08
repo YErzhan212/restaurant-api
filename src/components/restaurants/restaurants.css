@@ -11,11 +11,13 @@
 .content {
    width: 100%;
    height: inherit;
+   min-height: 100vh;
    position: relative;
    bottom: 0;
    top: 80px;
    left: 0;
    right: 0;
+   margin-bottom: 50px;
 }
 
 .container__restaurants {
@@ -72,21 +74,22 @@
    display: flex;
 }
 
-.btns > button {
+.btns > span {
    font-size: 15px;
    font-weight: 700;
    color: #fff;
    background-color: inherit;
    margin: 20px auto;
    padding: 5px 30px;
+   border: 1px solid orange;
    text-transform: uppercase;
-   outline: none;
    transition: 0.7s all ease;
 }
 
-.btns > button:hover {
+.btns > span:hover {
    color: #000;
-   background-color: orange; 
+   background-color: orange;
+   cursor: pointer; 
 }
 
 .pagination {

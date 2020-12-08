@@ -28,9 +28,13 @@ function* signIn(action) {
       localStorage.setItem('token', token)
       const decoded = jwt_decode(token)
       yield put({ type: types.SET_CURRENT_USER, payload: decoded });
-      if (role === 'admin'){
-         history.push('/dashboard')
-      } else { history.push('/') }
+      
+         if (role === 'admin') {
+            history.push('/profile')
+         } else { 
+            history.push('/') 
+         }
+
    } catch(error) {
       yield put({ type: types.SIGN_IN_FAILED, error })
    }

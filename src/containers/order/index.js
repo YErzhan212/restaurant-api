@@ -4,16 +4,14 @@ import * as authActions from '../../actions/authActions';
 import * as restaurantActions from '../../actions/restaurantActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Card, Col, Input, Modal } from 'antd';
+import { Input, Modal } from 'antd';
 
 function Order(props) {
 
-   const { Meta } = Card;
-
    const [modal, setModal] = useState(false)
    const [form, setForm] = useState({
-      userId: ` `,
-      restaurantId: ` `,
+      userId: props.user,
+      restaurant: props.restaurant,
       orderdate: ` `,
       guest: ' ',
    })
@@ -23,7 +21,7 @@ function Order(props) {
          await props.orderActions.getOrder()
       }
       fetchData()
-   }, [props.orderActions, form])
+   }, [props.orderActions])
 
    const showModal = () => {
       setModal(true)
@@ -40,40 +38,23 @@ function Order(props) {
       setModal(false)
    };
 
-   const onChangeHandlerOrderDate = (value) => {
-      setForm (prev => ({
-         ...prev,
-         orderdate: value
-      }))
+   const onChangeHandlerOrderDate = e => {
+      setForm({ orderdate: e.target.value })
    }
 
-   const onChangeHandlerGuest = (value) => {
-      setForm (prev => ({
-         ...prev,
-         guest: value
-      }))
+   const onChangeHandlerGuest = e => {
+      setForm({ guest: e.target.value }) 
    }
 
-   const onChangeHandlerUserId = (value) => {
-      setForm (prev => ({
-         ...prev,
-         userId: value
-      }))
-   }
 
-   const onChangeHandlerRestaurantId = (value) => {
-      setForm (prev => ({
-         ...prev,
-         restaurantId: value
-      }))
-   }
-
-   const orders = props.order?.orders?.map((item, i) => {
+   const orders = props.order.map((item, i) => {
       return (
-         <Col span={6}>
-            <Meta id={item.id}/>
-            <Meta title={item.userId}/>
-         </Col>
+         <div key={i} style={{ marginLeft: `20px` }}>
+            <p>{form.userId}</p>
+            <p>{item.orderdate}</p>
+            <p>{item.guest}</p>
+            <div style={{ height: `500px`, width: `600px` }}>{form.restaurant}</div>
+         </div>
       )
    })
 
@@ -85,14 +66,10 @@ function Order(props) {
             onOk={handleOk}
             onCancel={handleCancel}
          >
-         <label>guest</label>
-         <Input name="text" onChange={onChangeHandlerGuest}/>
          <label>orderdate</label>
-         <Input name="text" onChange={onChangeHandlerOrderDate}/>
-         <label>userId</label>
-         <Input name="text" onChange={onChangeHandlerUserId}/>
-         <label>restaurantId</label>
-         <Input name="text" onChange={onChangeHandlerRestaurantId}/>
+         <Input name="orderdate" onChange={onChangeHandlerOrderDate}/>
+         <label>guest</label>
+         <Input name="guest" onChange={onChangeHandlerGuest}/>
          </Modal>
             {orders}
          <button onClick={showModal}>add</button>
@@ -103,7 +80,7 @@ function Order(props) {
 const mapStateToProps = state => ({
    error: state.restaurant.error,
    error: state.order.error,
-   restaurant: state.restaurant.restaurants,
+   restaurant: state.restaurant.restaurants.id,
    order: state.order.orders,
    user: state.auth.user.id
 })
@@ -111,7 +88,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
    orderActions: bindActionCreators(orderActions, dispatch),
    authActions: bindActionCreators(authActions, dispatch),
-   authActions: bindActionCreators(restaurantActions, dispatch),
+   restaurantActions: bindActionCreators(restaurantActions, dispatch),
 })
 
 

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as authActions from '../../actions/authActions';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import './signin.css'
 
@@ -81,11 +81,9 @@ function Signin(props) {
             >
             <Input.Password placeholder="Password"/>
             </Form.Item>
-
                <Form.Item {...tailLayout} name="remember" valuePropName="checked" >
-               <Checkbox style={{ color: `white` }}>Remember me</Checkbox>
+                  <Checkbox style={{ color: `white` }}>Remember me</Checkbox>
                </Form.Item>
-
                <Form.Item {...tailLayout} >
                   <Button type="primary" htmlType="submit" style={{padding: `0 30px`, borderRadius: `3px`}}>
                      SIGN IN

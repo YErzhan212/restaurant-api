@@ -48,7 +48,7 @@ function Main() {
             </Carousel>
          </div>
          <div className="blog-wrapper">
-            <div className="restaurant-blog">
+            <div className="restaurant-blog container__">
                <div className="inner">
                   <h3>our restaurants</h3>
                </div>
@@ -86,50 +86,28 @@ function Main() {
                <div className="section-inner">
                   <h3>sweets and desserts</h3>
                </div>
-               <div className="cards">
+               <div className="cards container__">
                   <CardDeck>
                      <Card>
                         <Card.Img variant="top" className="card_size"
-                        src="https://img1.goodfon.com/original/2362x1772/a/cd/torty-klubnika-malina-mindal.jpg" />
+                           src="https://img1.goodfon.com/original/2362x1772/a/cd/torty-klubnika-malina-mindal.jpg" />
                         <Card.Body>
-                           <Card.Title>Card title</Card.Title>
-                           <Card.Text>
-                              This is a wider card with supporting text below as a natural lead-in to
-                              additional content. This content is a little bit longer.
-                           </Card.Text>
+                           <Card.Title>Price 15$</Card.Title>
                         </Card.Body>
-                        <Card.Footer>
-                           <small className="text-muted">enjoy your meal</small>
-                        </Card.Footer>
                      </Card>
                      <Card>
                         <Card.Img variant="top" className="card_size"
-                        src="https://img1.goodfon.com/original/5160x3486/8/f2/berries-cake-sweet-dessert-2889.jpg" />
+                           src="https://img1.goodfon.com/original/5160x3486/8/f2/berries-cake-sweet-dessert-2889.jpg" />
                         <Card.Body>
-                           <Card.Title>Card title</Card.Title>
-                           <Card.Text>
-                              This card has supporting text below as a natural lead-in to additional
-                              content.
-                           </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                           <small className="text-muted">enjoy your meal</small>
-                        </Card.Footer>
+                           <Card.Title>Price 10$</Card.Title>
+                        </Card.Body>   
                      </Card>
                      <Card>
                         <Card.Img variant="top" className="card_size"
-                        src="https://www.wholesalesuppliesplus.com/Images/Products/9494-Sweet-on-Paris-Fragrance-Oil-579.jpg" />
+                           src="https://www.wholesalesuppliesplus.com/Images/Products/9494-Sweet-on-Paris-Fragrance-Oil-579.jpg" />
                         <Card.Body>
-                           <Card.Title>Card title</Card.Title>
-                           <Card.Text>
-                              This is a wider card with supporting text below as a natural lead-in to
-                              additional content. This card has even longer content than the first to
-                              show that equal height action.
-                           </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                           <small className="text-muted">enjoy your meal</small>
-                        </Card.Footer>
+                           <Card.Title>Price 9,14$</Card.Title>
+                        </Card.Body> 
                      </Card>
                   </CardDeck>
                </div>

@@ -20,7 +20,7 @@ function Restaurants(props) {
    })
    const [modalOrder, setOrder] = useState(false)
    const [formOrder, setFormOrder] = useState({
-      orderdate: Date.now(),
+      orderdate: ` `,
       guest: ``,
    })
 
@@ -55,12 +55,12 @@ function Restaurants(props) {
    };
 
    const onChangeHandler = e => {
-      setFormOrder({ text: e.target.value })
+      setFormOrder({ guest: e.target.value })
    }
 
    const searchHandler = (e) => {
       setSearchReq(e.target.value)
-      props.restaurantActions.getRestaurant({query: e.target.value, page: search.page})
+      props.restaurantActions.getRestaurant({ query: e.target.value, page: search.page })
    }
 
    const data = props.restaurant?.restaurants?.map((item, i) => {
@@ -75,8 +75,8 @@ function Restaurants(props) {
                <p>{`Amount of Place: ${item.amountOfPlace}`}</p>
                <p>{`Phone: ${item.phone}`}</p>
                   <div className="btns">
-                     <button onClick={showModal}>Order</button>
-                     <button>Favorite</button>
+                     <span onClick={showModal}>Order</span>
+                     <span>Favorite</span>
                   </div>
             </div>
          </div>
@@ -106,13 +106,6 @@ function Restaurants(props) {
                      size="large"
                   />
                      {data}
-                  <Pagination
-                     className="pagination"
-                     onChange={onChangePage}
-                     current={search.page}
-                     pageSize={3} 
-                     total={Number(props.restaurant?.restaurants?.total)}
-                  />
                </Container>
             </div>
          <Footer/>

@@ -36,9 +36,9 @@ function Review(props) {
       setFormData({ text: e.target.value })
    }
 
-   // const onCancelId = e => {
-   //    setFormData({ restaurantId: e.target.value })
-   // }
+   const onCancelId = e => {
+      setFormData({ restaurantId: e.target.value })
+   }
 
    useEffect(() => {
       async function fetchData() {
@@ -84,8 +84,8 @@ function Review(props) {
             <label>Ваш отзыв</label>
             <Input onChange={onChangeHandler}/>
 
-            {/* <label>ID Ресторана</label>
-            <Input onChange={onCancelId}/> */}
+            <label>ID Ресторана</label>
+            <Input onChange={onCancelId}/>
         </Modal>
       </div>
    )

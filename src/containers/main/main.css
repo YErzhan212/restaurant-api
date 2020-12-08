@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;900&display=swap');
 .wrapper {
-   /* position: relative;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0; */
    width: 100%;
    font-family: 'Montserrat', sans-serif;
    box-sizing: border-box;
 }
+
+.container__ {
+   width: 90%;
+   margin: 0 auto;
+}
+
 .carousel-wrapper {
    position: relative;
    top: 80px;
@@ -144,7 +145,7 @@
    position: relative;
    width: 450px;
    height: 450px;
-   border: 1px solid rgb(206, 135, 4);
+   border: none;
    border-radius: 40px;
    box-sizing: border-box;
    overflow: hidden;
@@ -219,13 +220,13 @@
    position: relative;
    top: 80px;
    width: 100%;
-   height: 850px;
+   height: 750px;
    background-color: #000;
 }
 
 .cards-blog {
    width: 100%;
-   height: 800px;
+   height: 700px;
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
@@ -253,12 +254,27 @@
    align-items: center;
 }
 
+.card {
+   border: none;
+}
+
 .card-deck {
-   margin: 0 100px 0;
+   margin: 0 50px 0;
    padding: 0;
 }
 
 .card_size {
    width: 100%;
    height: 450px;
+}
+
+.card-body {
+   padding: 2rem;
+   background-color: orange;
+   text-align: center;
+}
+
+.card-title {
+   font-size: 25px;
+   font-weight: 700;
 }
