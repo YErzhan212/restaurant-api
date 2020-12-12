@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import * as restaurantActions from "../../actions/restaurantActions";
 import * as reviewActions from '../../actions/reviewActions';
-import * as orderActions from '../../actions/orderActions';
 import * as authActions from '../../actions/authActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -14,10 +13,11 @@ import {  Input, Modal } from 'antd';
 function RestaurantList(props) {
 
    const [restaurantList] = useState({
-      image: props.restaurant
+      restaurant: props.restaurant
    })
 
    console.log(restaurantList)
+
    const [addReviews, setAddReviews] = useState({
       text: ' ',
    })
@@ -29,6 +29,7 @@ function RestaurantList(props) {
       fetchReview()
    }, [props.reviewActions])
 
+
    const onChangeHandler = e => {
       setAddReviews({ text: e.target.value })
    }
@@ -37,23 +38,6 @@ function RestaurantList(props) {
       console.log(e)
       props.reviewActions.addReview(addReviews)
    }
-   
-   // const restaurant = props.restaurant?.restaurants?.map((restaurantList, i) => {
-   //    return(
-   //       <div key={i}>
-   //          <div>
-   //             <img alt="image-restaurant" src={`http://localhost:5000/${restaurantList?.image}`}/>
-   //          </div>
-   //          <div>
-   //             <p>{`Adress: ${restaurantList?.location}`}</p>
-   //             <p>{`Avarage Check: ${restaurantList?.averageBill}`}</p>
-   //             <p>{`Amount of Place: ${restaurantList?.amountOfPlace}`}</p>
-   //             <p>{`Kitchens: ${restaurantList?.kitchens}`}</p>
-   //             <p>{`Rate: ${restaurantList?.rate}`}</p>
-   //          </div>
-   //       </div>
-   //    )
-   // })
 
    const review = props.reviews.map((item, i) => {
       return (
@@ -89,7 +73,7 @@ function RestaurantList(props) {
                      <div className="add__review">
                         <h5 style={{ color: `#fff` }}>Сообщение:</h5>
                         <textarea
-                           name="comment"
+                           name="text"
                            placeholder="Введите сообщение..."
                            onChange={onChangeHandler}
                            className="text__area"
@@ -97,12 +81,9 @@ function RestaurantList(props) {
                            rows="6"
                            maxLength="60"
                         />
-                        <Button
-                           onClick={addReview}
-                           style={{ marginBottom: `50px` }}
-                        >
+                        <span onClick={addReview} >
                               Добавить Отзыв
-                        </Button>   
+                        </span>   
                      </div>
                   </div>
                </Container>
@@ -115,7 +96,7 @@ function RestaurantList(props) {
 
 const mapStateToProps = state => ({
    error: state.restaurant.error,
-   restaurant: state.restaurant.restaurants.image,
+   restaurant: state.restaurant.restaurants,
    reviews: state.review.reviews,
    user: state.auth.user.name
 })

@@ -33,41 +33,21 @@ function Restaurant(props) {
         rate: ""
     })
     const [editForm, setEditForm] = useState({
-        name: "",
-        phone: "",
-        location: "",
-        amountOfPlace: "",
-        image: "",
-        averageBill: "",
+        name: " ",
+        phone: " ",
+        location: " ",
+        amountOfPlace: " ",
+        image: " ",
+        averageBill: " ",
         kitchens: [],
-        rate: ""
+        rate: " "
     })
-
-    const showEditVisible = () => {
-        setEditModalVisible(true)
-    }
     
-    const handlerEdit = (value) => {
-        editForm.name && editForm.id && props.restaurantActions.editRestaurant(editForm)
-        setEditModalVisible(false)
-        console.log(value)
-    }
-
-    const onEditChange = e => {
-        const {value, name} = e.target;
-        setEditForm(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-
     const okHandler = () => {
         setModalVisible(false)
         console.log({...formdata, image, kitchens})
         props.restaurantActions.addRestaurant({...formdata, image, kitchens});
     }
-
-    const { Meta } = Card;
 
     const  getBase64 = (img, callback) => {
         const reader = new FileReader();
@@ -116,7 +96,6 @@ function Restaurant(props) {
             [name]: value
         }))
     }
-    console.log(props.restaurant)
 
     const dummyRequest = ({ file, onSuccess }) => {
         setTimeout(() => {
@@ -152,7 +131,25 @@ function Restaurant(props) {
             );
         }
         };
-    console.log(props.restaurant.total)
+
+    const showEditVisible = () => {
+        setEditModalVisible(true)
+    }
+    
+    const handlerEdit = (value) => {
+        editForm.name && editForm.id && props.restaurantActions.editRestaurant(editForm)
+        setEditModalVisible(false)
+        console.log(value)
+    }
+
+    const onEditChange = e => {
+        const {value, name} = e.target;
+        setEditForm(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
 
     const children = props.kitchens.map((item, i) => <Option value={item.id} key={i}>{item.name}</Option>)
     const uploadButton = (
@@ -161,6 +158,8 @@ function Restaurant(props) {
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     );
+
+    const { Meta } = Card;
 
     const data = props.restaurant?.restaurants?.map((item, i) => {
         return (
@@ -191,7 +190,7 @@ return (
         <Row gutter={20}>
             {data}
         </Row>
-    <Pagination onChange={onChangePage} current={search.page} pageSize={6} total={Number(props.restaurant.total)}/>
+    <Pagination onChange={onChangePage} current={search.page} pageSize={8} total={Number(props.restaurant.total)}/>
         <Modal
             title="Create Restaurant"
             visible={modalVisible}
@@ -347,7 +346,7 @@ return (
                         },
                     ]}
                 >
-                    <Input value={editForm.name} onChange={onEditChange} />
+                    <Input name="name" onChange={onEditChange} />
                 </Form.Item>
                 <Form.Item
                     label="Адрес"

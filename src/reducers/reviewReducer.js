@@ -19,7 +19,13 @@ export default function reviewReducer(state = initialState, action) {
       case types.ADD_REVIEW_RECEIVED:
          return {...state, isLoading: false, reviewResponse: action.payload}
       case types.ADD_REVIEW_FAILED:
-         return {...state, isLoading: false, error: action.error}        
+         return {...state, isLoading: false, error: action.error}   
+      case types.DELETE_REVIEW:
+         return {...state, isLoading: true}
+      case types.DELETE_REVIEW_SUCCESS:
+         return {...state, isLoading: false, reviewResponse: action.payload}
+      case types.DELETE_REVIEW_FAILED:
+         return {...state, isLoading: false, error: action.error}              
       default:
          return state         
    }

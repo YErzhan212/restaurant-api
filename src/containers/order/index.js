@@ -4,17 +4,21 @@ import * as authActions from '../../actions/authActions';
 import * as restaurantActions from '../../actions/restaurantActions';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Input, Modal } from 'antd';
+import { Input, Modal, Form } from 'antd';
+import './order.css';
+import Navbar from '../../components/navbar'
 
 function Order(props) {
 
    const [modal, setModal] = useState(false)
    const [form, setForm] = useState({
       userId: props.user,
-      restaurant: props.restaurant,
+      restaurantId: ` `,
       orderdate: ` `,
       guest: ' ',
    })
+
+   console.log(form.name)
 
    useEffect(() => {
       async function fetchData() {
@@ -38,40 +42,89 @@ function Order(props) {
       setModal(false)
    };
 
-   const onChangeHandlerOrderDate = e => {
-      setForm({ orderdate: e.target.value })
+   const onChange = e => {
+      const {value, name} = e.target
+      setForm(prev => ({
+         ...prev,
+         [name]: value
+      }))
    }
-
-   const onChangeHandlerGuest = e => {
-      setForm({ guest: e.target.value }) 
-   }
-
 
    const orders = props.order.map((item, i) => {
       return (
-         <div key={i} style={{ marginLeft: `20px` }}>
-            <p>{form.userId}</p>
-            <p>{item.orderdate}</p>
-            <p>{item.guest}</p>
-            <div style={{ height: `500px`, width: `600px` }}>{form.restaurant}</div>
+         <div key={i} className="order__content">
+            <span>
+               Ваш ID: {form.userId}
+            </span>
+            <span>
+               Дата и время прихода: {item.orderdate}
+            </span>
+            <span>
+               Количество Гостей: {item.guest}
+            </span>
+            <span>
+               Ресторан: {item.restaurantId}
+            </span>
          </div>
       )
    })
 
    return (
-      <div>
+      <div className="order__wrapper">
+         <Navbar/>
          <Modal
             title="Забронировать"
             visible={modal}
             onOk={handleOk}
             onCancel={handleCancel}
          >
-         <label>orderdate</label>
-         <Input name="orderdate" onChange={onChangeHandlerOrderDate}/>
-         <label>guest</label>
-         <Input name="guest" onChange={onChangeHandlerGuest}/>
+            <Form
+               labelCol={{ span: 8 }}
+               wrapperCol={{ span: 14 }}
+               layout="horizontal"
+               // initialValues={{ size: componentSize }}
+               // onValuesChange={onFormLayoutChange}
+               // size={componentSize}
+            >
+               <Form.Item
+                  label="ID Ресторана"
+                  rules={[
+                     {
+                        required: true,
+                        message: 'Пожалуйста введите дату прихода!',
+                     },
+                  ]}
+               >
+                  <Input name="restaurantId" onChange={onChange} />
+                  </Form.Item>
+               <Form.Item
+                  label="Укажите дату"
+                  rules={[
+                     {
+                        required: true,
+                        message: 'Пожалуйста введите дату прихода!',
+                     },
+                  ]}
+               >
+                  <Input name="orderdate" onChange={onChange} />
+                </Form.Item>
+                <Form.Item
+                  label="Количество Гостей"
+                  rules={[
+                     {
+                        required: true,
+                        message: 'Пожалуйста введите количетсво гостей!',
+                     },
+                  ]}
+               >
+                  <Input name="guest" onChange={onChange} />
+                </Form.Item>
+            </Form>    
          </Modal>
-            {orders}
+         <h2>Рестораны которые Вы забронировали:</h2>
+            <div className="order__info">
+               {orders}
+            </div>
          <button onClick={showModal}>add</button>
       </div>
    )
@@ -80,7 +133,7 @@ function Order(props) {
 const mapStateToProps = state => ({
    error: state.restaurant.error,
    error: state.order.error,
-   restaurant: state.restaurant.restaurants.id,
+   restaurant: state.restaurant.restaurants,
    order: state.order.orders,
    user: state.auth.user.id
 })

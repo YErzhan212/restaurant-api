@@ -29,6 +29,10 @@
    border-bottom: 2px solid orange;
 }
 
+.input__form {
+   width: 100%;
+   margin-top: 20px;
+}
 .image__restaurants {
    width: 450px;
    height: 300px;
@@ -80,7 +84,7 @@
    color: #fff;
    background-color: inherit;
    margin: 20px auto;
-   padding: 5px 30px;
+   padding: 5px 15px;
    border: 1px solid orange;
    text-transform: uppercase;
    transition: 0.7s all ease;
@@ -96,4 +100,53 @@
    display: flex;
    justify-content: center;
    margin-top: 30px;
+}
+
+.ant-modal-header {
+   background-color: #0f0f0fd1;
+   border-bottom: 1px solid orange;
+}
+
+.ant-modal-title {
+   color: #fff;
+   font-size: 18px;
+}
+
+.anticon {
+   color: #fff;
+}
+
+.ant-modal-body {
+   background-color: #0f0f0fd1;
+}
+
+.ant-modal-footer {
+   background-color: #0f0f0fd1;
+   border-top: 1px solid orange;
+}
+
+.ant-col > label {
+   color: #fff;
+}
+
+.ant-input {
+   background-color: inherit;
+   border: 1px solid orange;
+   color: #fff;
+}
+
+.ant-input:hover {
+   border: 1px solid #fff;
+}
+
+.ant-btn {
+   background-color: orange;
+   border: none;
+   color: #000;
+   font-weight: 600;
+}
+
+.ant-btn:hover {
+   color: #fff;
+   background-color: orange;
 }

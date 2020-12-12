@@ -14,7 +14,7 @@ function Kitchen(props) {
    })
 
    const [editForm, setEditForm] = useState({
-      name: ``
+      name: " "
    })
 
    const showVisible = () => {
@@ -42,7 +42,9 @@ function Kitchen(props) {
    }
 
    const handleEdit = () => {
-      editForm.name && editForm.id && props.kitchensActions.editKitchens(editForm)
+      editForm.name && 
+      editForm.id &&
+      props.kitchensActions.editKitchens(editForm)
       setEditVisible(false)
    }
 
@@ -111,7 +113,7 @@ function Kitchen(props) {
                            },
                         ]}
                      >
-                     <label>Name:</label>
+                     <label style={{ color: `#fff` }}>Name:</label>
                      <Input 
                         style={{ margin: `20px 0 20px 0` }} 
                         value={form.name} 

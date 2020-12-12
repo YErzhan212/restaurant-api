@@ -5,5 +5,5 @@ export function getFavorites() {
 }
 
 export function addFavorites(data) {
-   return { type: types.ADD_FAVORITES }
+   return { type: types.ADD_FAVORITES, data }
 }

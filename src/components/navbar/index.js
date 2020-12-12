@@ -12,7 +12,6 @@ function Navbar() {
 
   return (
     <div className="nav-ponel-wrapper">
-      <Container>
         <div className="nav-ponel">
           <NavLink className="nav-ponel-logo" to="/">
             RESTAURANT
@@ -25,7 +24,6 @@ function Navbar() {
             <Link to="/profile" className="link" id="auth__user">Profile</Link> 
           </div>
         </div>
-      </Container>
     </div>
   )
 }

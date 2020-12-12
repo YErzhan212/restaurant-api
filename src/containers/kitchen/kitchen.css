@@ -23,7 +23,7 @@
    position: absolute;
    top: 0;
    left: 0;
-   z-index: 2222;
+   z-index: 5;
 }
 
 .modal-inner{
@@ -31,10 +31,10 @@
    width: 100%;
    max-width: 400px;
    min-height: 200px;
-   background-color: #fff;
+   background-color: #0f0f0fd1;
    border-radius: 4px;
    padding: 20px;
-   z-index: 8888;
+   z-index: 6;
 }
 
 .modal-inner fieldset{
@@ -43,4 +43,5 @@
 
 .btn{
    margin: 20px 25px;
+   float: right;
 }

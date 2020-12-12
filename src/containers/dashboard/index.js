@@ -10,7 +10,6 @@ import Kitchen from '../kitchen/index';
 import Restaurant from '../restaurant/index';
 import Review from '../review/index';
 import {
-  TrademarkOutlined,
   PlusOutlined,
   AlignLeftOutlined,
 } from '@ant-design/icons';
@@ -33,7 +32,7 @@ function Dashboard(props) {
               <Menu.Item key="1" icon={<PlusOutlined />} >
                 <Link to='/dashboard/kitchen'>Кухни</Link>
               </Menu.Item>
-              <Menu.Item key="2" icon={<TrademarkOutlined />}>
+              <Menu.Item key="2" icon={<PlusOutlined />}>
                 <Link to='/dashboard/restaurant'>Рестораны</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<AlignLeftOutlined />}>
@@ -54,16 +53,7 @@ function Dashboard(props) {
                 onClick: this.toggle,
               })} */}
             </Header>
-            <Content
-              className="site-layout-background"
-              style={{
-                margin: '24px 16px',
-                padding: 24,
-                fontSize: `19px`,
-                backgroundColor: `#d1d1d1d1`,
-                minHeight: `100vh`,
-              }}
-            >
+            <Content className="content__dashboard">
               <Route exact path='/dashboard/kitchen' component={Kitchen} />
               <Route exact path='/dashboard/restaurant' component={Restaurant} />
               <Route exact path='/dashboard/review' component={Review} />

@@ -1,0 +1,29 @@
+.favorites__wrapper {
+   position: relative;
+   top: 80px;
+   bottom: 0;
+   width: 100%;
+   min-height: 100vh;
+   background-color: #0f0f0fd1;
+}
+
+.favorites {
+   width: 25%;
+   height: 200px;
+   border: 1px solid #d1d1d1d1;
+   border-radius: 10px;
+   margin: 20px 10px 0 10px;
+   padding-top: 20px;
+}
+
+.favorites__blog {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.favorites > p {
+   font-size: 18px;
+   color: #ffff;
+   text-align: center;
+}
